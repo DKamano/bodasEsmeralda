@@ -487,33 +487,117 @@
     color: var(--ink-soft);
     margin-bottom: 18px;
   }
-  .form-embed-wrap{
+  .native-form{
     text-align: left;
+  }
+  .form-row{
+    margin-bottom: 16px;
+  }
+  .form-row label{
+    display:block;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
     margin-bottom: 6px;
   }
-  .form-embed-wrap .form-embed-label{
-    font-size: 0.78rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--gold-700);
-    margin-bottom: 8px;
-    display:block;
+  .form-row input[type=text],
+  .form-row input[type=number]{
+    width:100%;
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--gold-400);
+    background: var(--cream-deep);
+    color: var(--ink);
   }
-  iframe.form-embed{
-    width: 100%;
-    height: 480px;
-    border: 1px solid var(--gold-100);
-    border-radius: 10px;
-    background: #fff;
+  .form-row input[type=text]:focus,
+  .form-row input[type=number]:focus{
+    outline: 2px solid var(--gold-600);
+    outline-offset: 1px;
   }
-  .form-embed-fallback{
+  .radio-group{
+    display:flex;
+    gap: 10px;
+  }
+  .radio-option{
+    flex:1;
+    position:relative;
+  }
+  .radio-option input{
+    position:absolute;
+    opacity:0;
+    inset:0;
+    cursor:pointer;
+  }
+  .radio-option span{
     display:block;
     text-align:center;
-    font-size: 0.78rem;
+    padding: 10px 8px;
+    border-radius: 8px;
+    border: 1px solid var(--gold-400);
+    background: var(--cream-deep);
     color: var(--ink-soft);
-    margin-top: 10px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.92rem;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
   }
-  .form-embed-fallback a{ color: var(--emerald-700); }
+  .radio-option input:checked + span{
+    background: var(--emerald-800);
+    border-color: var(--emerald-800);
+    color: var(--cream);
+  }
+  .radio-option input:focus-visible + span{
+    outline: 2px solid var(--gold-600);
+    outline-offset: 2px;
+  }
+  .form-guests{
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+  }
+  .form-guests.open{ max-height: 120px; }
+  .btn-submit{
+    width:100%;
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 0.88rem;
+    padding: 13px 20px;
+    border-radius: 999px;
+    border: 1px solid var(--emerald-800);
+    background: var(--emerald-800);
+    color: var(--cream);
+    cursor:pointer;
+    transition: background 0.15s ease, opacity 0.15s ease;
+  }
+  .btn-submit:hover{ background: var(--emerald-700); }
+  .btn-submit:disabled{ opacity: 0.6; cursor:default; }
+  .form-status{
+    margin-top: 12px;
+    font-size: 0.85rem;
+    text-align:center;
+    min-height: 1.2em;
+  }
+  .form-status.error{ color: #A6432F; }
+  .form-success{
+    text-align:center;
+    padding: 10px 4px 4px;
+  }
+  .form-success .gem{ margin: 0 auto 14px; }
+  .form-success h4{
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: var(--emerald-950);
+    margin: 0 0 6px;
+  }
+  .form-success p{
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    margin:0;
+  }
 
   /* ============================================================
      RODAPÉ
@@ -667,10 +751,19 @@
 
     <p class="modal-note">Depois de fazer o PIX, confirme aqui embaixo 💚</p>
 
-    <div class="form-embed-wrap">
-      <span class="form-embed-label">Confirmar presente</span>
-      <iframe class="form-embed" id="giftFormIframe" title="Formulário de presente escolhido" loading="lazy"></iframe>
-      <span class="form-embed-fallback">Formulário não carregou? <a id="giftFormFallback" href="#" target="_blank" rel="noopener">abra em uma nova aba</a></span>
+    <form class="native-form" id="giftForm">
+      <div class="form-row">
+        <label for="giftNameInput">Seu nome</label>
+        <input type="text" id="giftNameInput" name="nome" required autocomplete="name" placeholder="Como você quer ser identificado(a)">
+      </div>
+      <button type="submit" class="btn-submit" id="giftSubmitBtn">Confirmar presente</button>
+      <p class="form-status" id="giftFormStatus"></p>
+    </form>
+
+    <div class="form-success" id="giftFormSuccess" style="display:none;">
+      <div class="gem"></div>
+      <h4>Presente confirmado!</h4>
+      <p>Muito obrigado pelo carinho 💚</p>
     </div>
   </div>
 </div>
@@ -685,9 +778,39 @@
     <h3 id="rsvpModalTitle">Confirmar Presença</h3>
     <p class="modal-note" style="margin-top:6px;">Preencha aqui embaixo 💚</p>
 
-    <div class="form-embed-wrap">
-      <iframe class="form-embed" id="rsvpFormIframe" title="Formulário de confirmação de presença" loading="lazy"></iframe>
-      <span class="form-embed-fallback">Formulário não carregou? <a id="rsvpFormFallback" href="#" target="_blank" rel="noopener">abra em uma nova aba</a></span>
+    <form class="native-form" id="rsvpForm">
+      <div class="form-row">
+        <label for="rsvpNameInput">Seu nome</label>
+        <input type="text" id="rsvpNameInput" name="nome" required autocomplete="name" placeholder="Nome completo">
+      </div>
+
+      <div class="form-row">
+        <label>Você vai comparecer?</label>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="vai" value="Sim" required>
+            <span>Sim, vou!</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="vai" value="Não" required>
+            <span>Não vou poder</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-row form-guests" id="rsvpGuestsRow">
+        <label for="rsvpGuestsInput">Quantas pessoas (incluindo você)</label>
+        <input type="number" id="rsvpGuestsInput" name="pessoas" min="1" step="1" placeholder="Ex: 2">
+      </div>
+
+      <button type="submit" class="btn-submit" id="rsvpSubmitBtn">Confirmar presença</button>
+      <p class="form-status" id="rsvpFormStatus"></p>
+    </form>
+
+    <div class="form-success" id="rsvpFormSuccess" style="display:none;">
+      <div class="gem"></div>
+      <h4>Presença confirmada!</h4>
+      <p>Que alegria saber que você vai estar com a gente 💚</p>
     </div>
   </div>
 </div>
@@ -704,8 +827,8 @@
   const CONFIG = {
     pixKey: "010.260.099-60",                 // CPF
     pixOwner: "Sandra",
-    rsvpFormLink: "https://docs.google.com/forms/d/e/1FAIpQLSfWIIZcxjLRF4WrlGurb-vGJ4ssZ-h3tXi1t-5gPkjxSAe7pA/viewform",
-    giftFormLink: "https://docs.google.com/forms/d/e/1FAIpQLSdbyEF-hs_SVhqoUBdeB2WqeSjQmp0vA7yIwbQP0ruV5HFplA/viewform",
+    // Cole aqui a URL de deploy do Apps Script (termina em /exec)
+    appsScriptUrl: "https://script.google.com/macros/s/AKfycbwXYDI0T--6YhaVPIZ4IAYvhEy3catNAbO_Dgf5HNgJbl1dnFJ-iJ3KY3Ism_YLKaWqjw/exec",
     gifts: [
       {
         id: "churrasqueira",
@@ -801,6 +924,16 @@
   freeCard.querySelector('button').addEventListener('click', () => openModal({ id:'livre', name:'Contribuição Livre', price:null }));
   grid.appendChild(freeCard);
 
+  // ---- Envio para o Apps Script (planilha Google) ----
+  function submitToSheet(payload){
+    return fetch(CONFIG.appsScriptUrl, {
+      method: 'POST',
+      mode: 'no-cors', // Apps Script não retorna CORS; enviamos "às cegas" e assumimos sucesso
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(payload).toString()
+    });
+  }
+
   // ---- Modal de presente ----
   const overlay = document.getElementById('modalOverlay');
   const modalTitle = document.getElementById('modalTitle');
@@ -809,16 +942,16 @@
   const freeInput = document.getElementById('freeAmountInput');
   const pixKeyText = document.getElementById('pixKeyText');
   const pixOwnerText = document.getElementById('pixOwnerText');
-  const giftFormIframe = document.getElementById('giftFormIframe');
-  const giftFormFallback = document.getElementById('giftFormFallback');
+  const giftForm = document.getElementById('giftForm');
+  const giftNameInput = document.getElementById('giftNameInput');
+  const giftSubmitBtn = document.getElementById('giftSubmitBtn');
+  const giftFormStatus = document.getElementById('giftFormStatus');
+  const giftFormSuccess = document.getElementById('giftFormSuccess');
 
   pixKeyText.textContent = CONFIG.pixKey;
   pixOwnerText.textContent = CONFIG.pixOwner;
-  const giftEmbedUrl = CONFIG.giftFormLink + (CONFIG.giftFormLink.includes('?') ? '&' : '?') + 'embedded=true';
-  giftFormFallback.href = CONFIG.giftFormLink;
 
   let currentGift = null;
-  let giftIframeLoaded = false;
 
   function openModal(gift){
     currentGift = gift;
@@ -833,10 +966,12 @@
       freeField.style.display = 'none';
     }
 
-    if(!giftIframeLoaded){
-      giftFormIframe.src = giftEmbedUrl;
-      giftIframeLoaded = true;
-    }
+    giftForm.reset();
+    giftForm.style.display = 'block';
+    giftFormSuccess.style.display = 'none';
+    giftFormStatus.textContent = '';
+    giftSubmitBtn.disabled = false;
+    giftSubmitBtn.textContent = 'Confirmar presente';
 
     overlay.classList.add('open');
   }
@@ -849,20 +984,62 @@
   document.getElementById('modalClose').addEventListener('click', closeModal);
   overlay.addEventListener('click', e => { if(e.target === overlay) closeModal(); });
 
+  giftForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    giftFormStatus.classList.remove('error');
+    giftFormStatus.textContent = '';
+
+    const nome = giftNameInput.value.trim();
+    if(!nome){ return; }
+
+    let valor = currentGift && currentGift.price !== null ? currentGift.price : Number(freeInput.value);
+    if(currentGift && currentGift.price === null){
+      if(!valor || valor <= 0){
+        giftFormStatus.classList.add('error');
+        giftFormStatus.textContent = 'Informe um valor válido.';
+        return;
+      }
+    }
+
+    giftSubmitBtn.disabled = true;
+    giftSubmitBtn.textContent = 'Enviando...';
+
+    try{
+      await submitToSheet({
+        tipo: 'presente',
+        nome: nome,
+        presente: currentGift ? currentGift.name : '',
+        valor: valor
+      });
+      giftForm.style.display = 'none';
+      giftFormSuccess.style.display = 'block';
+    }catch(err){
+      giftFormStatus.classList.add('error');
+      giftFormStatus.textContent = 'Não deu pra enviar agora. Tenta de novo em instantes.';
+      giftSubmitBtn.disabled = false;
+      giftSubmitBtn.textContent = 'Confirmar presente';
+    }
+  });
+
   // ---- Modal de RSVP ----
   const rsvpOverlay = document.getElementById('rsvpModalOverlay');
   const rsvpBtn = document.getElementById('rsvpBtn');
-  const rsvpFormIframe = document.getElementById('rsvpFormIframe');
-  const rsvpFormFallback = document.getElementById('rsvpFormFallback');
-  const rsvpEmbedUrl = CONFIG.rsvpFormLink + (CONFIG.rsvpFormLink.includes('?') ? '&' : '?') + 'embedded=true';
-  rsvpFormFallback.href = CONFIG.rsvpFormLink;
-  let rsvpIframeLoaded = false;
+  const rsvpForm = document.getElementById('rsvpForm');
+  const rsvpNameInput = document.getElementById('rsvpNameInput');
+  const rsvpGuestsRow = document.getElementById('rsvpGuestsRow');
+  const rsvpGuestsInput = document.getElementById('rsvpGuestsInput');
+  const rsvpSubmitBtn = document.getElementById('rsvpSubmitBtn');
+  const rsvpFormStatus = document.getElementById('rsvpFormStatus');
+  const rsvpFormSuccess = document.getElementById('rsvpFormSuccess');
 
   function openRsvpModal(){
-    if(!rsvpIframeLoaded){
-      rsvpFormIframe.src = rsvpEmbedUrl;
-      rsvpIframeLoaded = true;
-    }
+    rsvpForm.reset();
+    rsvpForm.style.display = 'block';
+    rsvpFormSuccess.style.display = 'none';
+    rsvpFormStatus.textContent = '';
+    rsvpGuestsRow.classList.remove('open');
+    rsvpSubmitBtn.disabled = false;
+    rsvpSubmitBtn.textContent = 'Confirmar presença';
     rsvpOverlay.classList.add('open');
   }
 
@@ -873,6 +1050,53 @@
   rsvpBtn.addEventListener('click', openRsvpModal);
   document.getElementById('rsvpModalClose').addEventListener('click', closeRsvpModal);
   rsvpOverlay.addEventListener('click', e => { if(e.target === rsvpOverlay) closeRsvpModal(); });
+
+  rsvpForm.addEventListener('change', e => {
+    if(e.target.name === 'vai'){
+      const showGuests = e.target.value === 'Sim';
+      rsvpGuestsRow.classList.toggle('open', showGuests);
+      rsvpGuestsInput.required = showGuests;
+      if(!showGuests) rsvpGuestsInput.value = '';
+    }
+  });
+
+  rsvpForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    rsvpFormStatus.classList.remove('error');
+    rsvpFormStatus.textContent = '';
+
+    const nome = rsvpNameInput.value.trim();
+    const vaiInput = rsvpForm.querySelector('input[name="vai"]:checked');
+    if(!nome || !vaiInput){ return; }
+
+    const vai = vaiInput.value;
+    const pessoas = vai === 'Sim' ? (Number(rsvpGuestsInput.value) || 1) : 0;
+
+    if(vai === 'Sim' && (!rsvpGuestsInput.value || Number(rsvpGuestsInput.value) < 1)){
+      rsvpFormStatus.classList.add('error');
+      rsvpFormStatus.textContent = 'Informe quantas pessoas vão.';
+      return;
+    }
+
+    rsvpSubmitBtn.disabled = true;
+    rsvpSubmitBtn.textContent = 'Enviando...';
+
+    try{
+      await submitToSheet({
+        tipo: 'rsvp',
+        nome: nome,
+        vai: vai,
+        pessoas: pessoas
+      });
+      rsvpForm.style.display = 'none';
+      rsvpFormSuccess.style.display = 'block';
+    }catch(err){
+      rsvpFormStatus.classList.add('error');
+      rsvpFormStatus.textContent = 'Não deu pra enviar agora. Tenta de novo em instantes.';
+      rsvpSubmitBtn.disabled = false;
+      rsvpSubmitBtn.textContent = 'Confirmar presença';
+    }
+  });
 
   document.addEventListener('keydown', e => {
     if(e.key === 'Escape'){ closeModal(); closeRsvpModal(); }
