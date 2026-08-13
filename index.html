@@ -809,8 +809,8 @@
 
     <div class="form-success" id="rsvpFormSuccess" style="display:none;">
       <div class="gem"></div>
-      <h4>Presença confirmada!</h4>
-      <p>Que alegria saber que você vai estar com a gente 💚</p>
+      <h4 id="rsvpFormSuccessTitle">Presença confirmada!</h4>
+      <p id="rsvpFormSuccessText">Que alegria saber que você vai estar com a gente 💚</p>
     </div>
   </div>
 </div>
@@ -1031,6 +1031,8 @@
   const rsvpSubmitBtn = document.getElementById('rsvpSubmitBtn');
   const rsvpFormStatus = document.getElementById('rsvpFormStatus');
   const rsvpFormSuccess = document.getElementById('rsvpFormSuccess');
+  const rsvpFormSuccessTitle = document.getElementById('rsvpFormSuccessTitle');
+  const rsvpFormSuccessText = document.getElementById('rsvpFormSuccessText');
 
   function openRsvpModal(){
     rsvpForm.reset();
@@ -1089,6 +1091,13 @@
         pessoas: pessoas
       });
       rsvpForm.style.display = 'none';
+      if(vai === 'Sim'){
+        rsvpFormSuccessTitle.textContent = 'Presença confirmada!';
+        rsvpFormSuccessText.textContent = 'Que alegria saber que você vai estar com a gente 💚';
+      } else {
+        rsvpFormSuccessTitle.textContent = 'Resposta registrada';
+        rsvpFormSuccessText.textContent = 'Que pena que não vai poder vir! Obrigado por avisar 💚';
+      }
       rsvpFormSuccess.style.display = 'block';
     }catch(err){
       rsvpFormStatus.classList.add('error');
