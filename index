@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bodas de Esmeralda: João & Sandra</title>
+<meta name="description" content="40 anos de amor. Celebre com a gente as Bodas de Esmeralda de João & Sandra.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     CONFIGURAÇÃO VISUAL — tokens de cor e tipografia
+     ============================================================ */
+  :root{
+    --cream:        #FAF6EC;
+    --cream-deep:   #F1E8D3;
+    --emerald-950:  #0B2A1D;
+    --emerald-800:  #123524;
+    --emerald-700:  #17402C;
+    --emerald-600:  #1F5C3F;
+    --emerald-400:  #3E8064;
+    --gold-700:     #9C7A34;
+    --gold-600:     #B58A3D;
+    --gold-400:     #C9A65C;
+    --gold-100:     #EFE1BE;
+    --ink:          #23281E;
+    --ink-soft:     #4A5142;
+
+    --font-script:  'Alex Brush', cursive;
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body:    'EB Garamond', serif;
+
+    --max-w: 880px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+
+  body{
+    margin:0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  a{ color: inherit; }
+  img{ max-width: 100%; display:block; }
+
+  :focus-visible{
+    outline: 2px solid var(--gold-600);
+    outline-offset: 3px;
+  }
+
+  .eyebrow{
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    color: var(--gold-700);
+  }
+
+  .divider{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 14px;
+    margin: 28px auto;
+    max-width: 320px;
+    color: var(--gold-600);
+  }
+  .divider::before, .divider::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background: linear-gradient(90deg, transparent, var(--gold-400), transparent);
+  }
+  .divider span{ font-size: 1.1rem; line-height:1; }
+
+  /* ============================================================
+     ORNAMENTO FLORAL — desenho original em linha, tom dourado
+     ============================================================ */
+  .corner-ornament{
+    position:absolute;
+    width: 150px;
+    height: 150px;
+    opacity: 0.55;
+    pointer-events:none;
+  }
+  .corner-ornament.tl{ top: 18px; left: 18px; }
+  .corner-ornament.br{ bottom: 18px; right: 18px; transform: rotate(180deg); }
+
+  /* ============================================================
+     HERO
+     ============================================================ */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    padding: 90px 24px 70px;
+    text-align:center;
+    background:
+      radial-gradient(ellipse at 50% -10%, rgba(31,92,63,0.08), transparent 60%),
+      var(--cream);
+    border-bottom: 1px solid var(--gold-100);
+  }
+
+  .hero-inner{
+    max-width: var(--max-w);
+    margin: 0 auto;
+    position:relative;
+    z-index:1;
+  }
+
+  .photo-frame{
+    width: 190px;
+    height: 190px;
+    margin: 0 auto 34px;
+    border-radius: 50%;
+    border: 2px solid var(--gold-600);
+    box-shadow: 0 0 0 7px var(--cream), 0 0 0 8px var(--gold-400);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background: var(--cream-deep);
+    overflow:hidden;
+  }
+  .photo-frame img{ width:100%; height:100%; object-fit:cover; }
+  .photo-frame .placeholder-text{
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--gold-700);
+    padding: 0 20px;
+    text-align:center;
+  }
+
+  .hero-lede{
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    max-width: 420px;
+    margin: 10px auto 0;
+  }
+
+  h1.bodas-de{
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-size: 1rem;
+    color: var(--emerald-700);
+    margin: 26px 0 0;
+  }
+
+  .esmeralda-script{
+    font-family: var(--font-script);
+    font-size: clamp(4rem, 14vw, 7.5rem);
+    color: var(--emerald-800);
+    line-height: 1;
+    margin: 6px 0 10px;
+  }
+
+  .couple-names{
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: clamp(2rem, 5vw, 2.9rem);
+    color: var(--emerald-950);
+    margin: 0 0 30px;
+  }
+
+  blockquote{
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+  blockquote::before{ content:"“"; color: var(--gold-600); font-size:1.6rem; }
+  blockquote::after{ content:"”"; color: var(--gold-600); font-size:1.6rem; }
+
+  .invite-text{
+    max-width: 520px;
+    margin: 0 auto;
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+  }
+
+  .details-row{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap: 40px;
+    margin: 8px auto 0;
+    text-align:left;
+  }
+  .detail-block{
+    display:flex;
+    gap: 14px;
+    align-items:flex-start;
+    max-width: 260px;
+  }
+  .detail-icon{
+    flex-shrink:0;
+    width: 34px; height:34px;
+    color: var(--emerald-700);
+  }
+  .detail-block .label-big{
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: var(--emerald-950);
+  }
+  .detail-block .label-small{
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--gold-700);
+    font-size: 0.95rem;
+  }
+  .detail-block .label-sub{
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    margin-top: 2px;
+  }
+
+  .kids{
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold-700);
+  }
+  .kids-names{
+    font-family: var(--font-script);
+    font-size: 1.8rem;
+    color: var(--emerald-800);
+    margin-top: 6px;
+  }
+  .kids-names .heart{ color: var(--gold-600); font-size: 1rem; margin: 0 8px; vertical-align: middle; }
+
+  .rsvp-line{
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+  }
+  .rsvp-line strong{ color: var(--emerald-800); }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap: 10px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    padding: 14px 28px;
+    border-radius: 999px;
+    border: 1px solid var(--emerald-800);
+    background: var(--emerald-800);
+    color: var(--cream);
+    text-decoration:none;
+    cursor:pointer;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .btn:hover{ background: var(--emerald-700); transform: translateY(-1px); }
+  .btn.ghost{
+    background: transparent;
+    color: var(--emerald-800);
+  }
+  .btn.ghost:hover{ background: var(--emerald-800); color: var(--cream); }
+
+  .cta-row{
+    display:flex;
+    gap: 14px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-top: 12px;
+  }
+
+  /* ============================================================
+     SEÇÃO DE PRESENTES — "estojo de joias"
+     ============================================================ */
+  .gifts{
+    position:relative;
+    background: var(--emerald-950);
+    color: var(--cream);
+    padding: 80px 24px 90px;
+  }
+  .gifts::before{
+    content:"";
+    position:absolute; inset:0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(201,166,92,0.10), transparent 55%);
+    pointer-events:none;
+  }
+  .gifts-inner{
+    max-width: 1040px;
+    margin: 0 auto;
+    position:relative;
+    text-align:center;
+  }
+  .gifts .eyebrow{ color: var(--gold-400); }
+  .gifts h2{
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    color: var(--cream-deep);
+    margin: 8px 0 14px;
+  }
+  .gifts-sub{
+    max-width: 560px;
+    margin: 0 auto 50px;
+    color: #CBD9CE;
+    font-size: 1rem;
+  }
+
+  .gift-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    text-align:left;
+  }
+  @media (max-width: 860px){ .gift-grid{ grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px){ .gift-grid{ grid-template-columns: 1fr; } }
+
+  .gift-card{
+    background: linear-gradient(160deg, var(--emerald-800), var(--emerald-700));
+    border: 1px solid rgba(201,166,92,0.35);
+    border-radius: 14px;
+    padding: 26px 22px 22px;
+    display:flex;
+    flex-direction:column;
+    gap: 14px;
+  }
+  .gem{
+    width: 30px; height: 30px;
+    background: linear-gradient(135deg, var(--gold-400), var(--gold-700));
+    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+  }
+  .gift-card h3{
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin: 0;
+    color: var(--cream);
+  }
+  .gift-card p{
+    font-size: 0.92rem;
+    color: #C9D6CB;
+    margin: 0;
+    flex:1;
+  }
+  .gift-price{
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: var(--gold-400);
+  }
+  .gift-card button{
+    margin-top: 4px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+    padding: 11px 18px;
+    border-radius: 999px;
+    border: 1px solid var(--gold-400);
+    background: transparent;
+    color: var(--gold-400);
+    cursor:pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .gift-card button:hover{ background: var(--gold-400); color: var(--emerald-950); }
+
+  .gift-card.free-amount{
+    background: linear-gradient(160deg, var(--gold-700), var(--gold-600));
+    border-color: var(--gold-100);
+  }
+  .gift-card.free-amount h3, .gift-card.free-amount p{ color: var(--emerald-950); }
+  .gift-card.free-amount .gift-price{ color: var(--emerald-950); }
+  .gift-card.free-amount button{
+    border-color: var(--emerald-950);
+    color: var(--emerald-950);
+  }
+  .gift-card.free-amount button:hover{ background: var(--emerald-950); color: var(--gold-100); }
+
+  /* ============================================================
+     MODAL DE PRESENTE / PIX
+     ============================================================ */
+  .modal-overlay{
+    position: fixed; inset:0;
+    background: rgba(11,42,29,0.72);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding: 20px;
+    z-index: 50;
+  }
+  .modal-overlay.open{ display:flex; }
+  .modal{
+    background: var(--cream);
+    border-radius: 16px;
+    max-width: 460px;
+    width:100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 32px 28px 28px;
+    position:relative;
+    text-align:center;
+  }
+  .modal-close{
+    position:absolute; top:14px; right:14px;
+    background:none; border:none;
+    font-size: 1.3rem;
+    color: var(--ink-soft);
+    cursor:pointer;
+    line-height:1;
+    padding: 6px;
+  }
+  .modal h3{
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.4rem;
+    color: var(--emerald-950);
+    margin: 6px 0 4px;
+  }
+  .modal .modal-price{
+    font-family: var(--font-display);
+    color: var(--gold-700);
+    font-weight: 600;
+    margin-bottom: 18px;
+  }
+  .modal label{
+    display:block;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+    text-align:left;
+  }
+  .modal input[type=number]{
+    width:100%;
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--gold-400);
+    background: var(--cream-deep);
+    margin-bottom: 18px;
+  }
+  .pix-box{
+    background: var(--cream-deep);
+    border: 1px dashed var(--gold-600);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 18px;
+    text-align:left;
+  }
+  .pix-box .pix-label{ font-size: 0.78rem; letter-spacing: 0.1em; text-transform:uppercase; color: var(--gold-700); }
+  .pix-box .pix-value{ font-family: var(--font-display); font-weight:600; font-size: 1.05rem; color: var(--emerald-950); word-break: break-all; }
+  .pix-box .pix-owner{ font-size: 0.85rem; color: var(--ink-soft); margin-top: 4px; }
+  .copy-btn{
+    margin-top: 10px;
+    font-size: 0.8rem;
+    background:none;
+    border: 1px solid var(--emerald-700);
+    color: var(--emerald-800);
+    padding: 6px 12px;
+    border-radius: 999px;
+    cursor:pointer;
+  }
+  .copy-btn:hover{ background: var(--emerald-800); color: var(--cream); }
+  .modal-note{
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    margin-bottom: 18px;
+  }
+  .form-embed-wrap{
+    text-align: left;
+    margin-bottom: 6px;
+  }
+  .form-embed-wrap .form-embed-label{
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold-700);
+    margin-bottom: 8px;
+    display:block;
+  }
+  iframe.form-embed{
+    width: 100%;
+    height: 480px;
+    border: 1px solid var(--gold-100);
+    border-radius: 10px;
+    background: #fff;
+  }
+  .form-embed-fallback{
+    display:block;
+    text-align:center;
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    margin-top: 10px;
+  }
+  .form-embed-fallback a{ color: var(--emerald-700); }
+
+  /* ============================================================
+     RODAPÉ
+     ============================================================ */
+  footer{
+    background: var(--cream-deep);
+    text-align:center;
+    padding: 30px 20px 18px;
+    font-size: 0.85rem;
+    color: var(--gold-700);
+    font-family: var(--font-display);
+    font-style: italic;
+  }
+  footer .credit{
+    display:block;
+    margin-top: 8px;
+    font-size: 0.72rem;
+    font-style: normal;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    opacity: 0.65;
+  }
+  footer .credit a{
+    color: var(--emerald-700);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  footer .credit a:hover{ border-bottom-color: var(--emerald-700); }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     HERO / CONVITE
+     ============================================================ -->
+<section class="hero">
+  <svg class="corner-ornament tl" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M8 8 C 30 8, 40 8, 40 30 C 40 55, 20 55, 20 80" stroke="#B58A3D" stroke-width="1.4"/>
+    <path d="M8 8 C 8 30, 8 40, 30 40 C 55 40, 55 20, 80 20" stroke="#B58A3D" stroke-width="1.4"/>
+    <ellipse cx="34" cy="18" rx="10" ry="5" fill="#3E8064" opacity="0.6" transform="rotate(-25 34 18)"/>
+    <ellipse cx="18" cy="34" rx="10" ry="5" fill="#3E8064" opacity="0.6" transform="rotate(-70 18 34)"/>
+    <ellipse cx="55" cy="12" rx="7" ry="4" fill="#C9A65C" opacity="0.7" transform="rotate(-10 55 12)"/>
+    <circle cx="20" cy="80" r="3" fill="#B58A3D" opacity="0.6"/>
+  </svg>
+  <svg class="corner-ornament br" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M8 8 C 30 8, 40 8, 40 30 C 40 55, 20 55, 20 80" stroke="#B58A3D" stroke-width="1.4"/>
+    <path d="M8 8 C 8 30, 8 40, 30 40 C 55 40, 55 20, 80 20" stroke="#B58A3D" stroke-width="1.4"/>
+    <ellipse cx="34" cy="18" rx="10" ry="5" fill="#3E8064" opacity="0.6" transform="rotate(-25 34 18)"/>
+    <ellipse cx="18" cy="34" rx="10" ry="5" fill="#3E8064" opacity="0.6" transform="rotate(-70 18 34)"/>
+    <ellipse cx="55" cy="12" rx="7" ry="4" fill="#C9A65C" opacity="0.7" transform="rotate(-10 55 12)"/>
+    <circle cx="20" cy="80" r="3" fill="#B58A3D" opacity="0.6"/>
+  </svg>
+
+  <div class="hero-inner">
+
+    <div class="photo-frame">
+      <img src="fotos/casal.jpg" alt="João e Sandra">
+    </div>
+
+    <p class="eyebrow">40 anos de amor, história e entrega</p>
+    <h1 class="bodas-de">Bodas de</h1>
+    <div class="esmeralda-script">Esmeralda</div>
+    <p class="couple-names">João &amp; Sandra</p>
+
+    <blockquote>
+      O amor verdadeiro não é aquele que nunca enfrenta tempestades, mas o que escolhe permanecer,
+      recomeçar e lutar todos os dias. É sobre persistir, superar e construir juntos, com fé,
+      respeito e companheirismo.
+    </blockquote>
+
+    <div class="divider"><span>♥</span></div>
+
+    <p class="invite-text">
+      Com muito amor e gratidão, convidamos você para celebrar com a gente esta história
+      que é exemplo de amor e superação.
+    </p>
+
+    <div class="details-row">
+      <div class="detail-block">
+        <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+        <div>
+          <div class="label-big">5 de Setembro</div>
+          <div class="label-small">às 17h</div>
+        </div>
+      </div>
+      <div class="detail-block">
+        <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s7-6.5 7-11a7 7 0 0 0-14 0c0 4.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        <div>
+          <div class="label-big">Café Colonial</div>
+          <div class="label-sub">Das Nações Hotel<br>R. José Rosa, 265, Canasvieiras<br>Florianópolis, SC, 88054-200</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"><span>♥</span></div>
+
+    <p class="kids">Com carinho, seus filhos</p>
+    <p class="kids-names">Lorena<span class="heart">♥</span>Sofia<span class="heart">♥</span>Pablo<span class="heart">♥</span>Diogo</p>
+
+    <div class="divider"><span>❦</span></div>
+
+    <p class="rsvp-line">Confirmar presença até <strong>31 de agosto</strong></p>
+
+    <div class="cta-row">
+      <button class="btn" id="rsvpBtn" type="button">Confirmar presença</button>
+      <a class="btn ghost" href="#presentes">Ver lista de presentes</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PRESENTES
+     ============================================================ -->
+<section class="gifts" id="presentes">
+  <div class="gifts-inner">
+    <p class="eyebrow">presentes de bodas</p>
+    <h2>O maior presente é a sua presença</h2>
+    <p class="gifts-sub">
+      Ter você aí com a gente já é o suficiente para comemorar esses 40 anos. Mas se você
+      quiser contribuir com algo além, separamos algumas ideias (com bom humor): escolha um
+      item, envie o PIX e depois confirme no formulário.
+    </p>
+
+    <div class="gift-grid" id="giftGrid"><!-- gerado via JS --></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MODAL
+     ============================================================ -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal-close" id="modalClose" aria-label="Fechar">✕</button>
+    <div class="gem" style="margin:0 auto 10px;"></div>
+    <h3 id="modalTitle">Presente</h3>
+    <div class="modal-price" id="modalPrice"></div>
+
+    <div id="freeAmountField" style="display:none;">
+      <label for="freeAmountInput">Quanto você quer contribuir? (R$)</label>
+      <input type="number" id="freeAmountInput" min="1" step="1" placeholder="Ex: 75">
+    </div>
+
+    <div class="pix-box">
+      <div class="pix-label">Chave PIX</div>
+      <!-- TROQUE OS DOIS VALORES ABAIXO PELA CHAVE E NOME REAIS -->
+      <div class="pix-value" id="pixKeyText">SUBSTITUA_PELA_CHAVE_PIX</div>
+      <div class="pix-owner">Titular: <span id="pixOwnerText">SUBSTITUA_PELO_NOME_DO_TITULAR</span></div>
+      <button class="copy-btn" id="copyPixBtn">Copiar chave PIX</button>
+    </div>
+
+    <p class="modal-note">Depois de fazer o PIX, confirme aqui embaixo 💚</p>
+
+    <div class="form-embed-wrap">
+      <span class="form-embed-label">Confirmar presente</span>
+      <iframe class="form-embed" id="giftFormIframe" title="Formulário de presente escolhido" loading="lazy"></iframe>
+      <span class="form-embed-fallback">Formulário não carregou? <a id="giftFormFallback" href="#" target="_blank" rel="noopener">abra em uma nova aba</a></span>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     MODAL RSVP
+     ============================================================ -->
+<div class="modal-overlay" id="rsvpModalOverlay">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="rsvpModalTitle">
+    <button class="modal-close" id="rsvpModalClose" aria-label="Fechar">✕</button>
+    <div class="gem" style="margin:0 auto 10px;"></div>
+    <h3 id="rsvpModalTitle">Confirmar Presença</h3>
+    <p class="modal-note" style="margin-top:6px;">Preencha aqui embaixo 💚</p>
+
+    <div class="form-embed-wrap">
+      <iframe class="form-embed" id="rsvpFormIframe" title="Formulário de confirmação de presença" loading="lazy"></iframe>
+      <span class="form-embed-fallback">Formulário não carregou? <a id="rsvpFormFallback" href="#" target="_blank" rel="noopener">abra em uma nova aba</a></span>
+    </div>
+  </div>
+</div>
+
+<footer>
+  feito com carinho pelos filhos de João &amp; Sandra
+  <span class="credit">Desenvolvido por <a href="https://lupstudio.com.br" target="_blank" rel="noopener">LUP Studio</a></span>
+</footer>
+
+<script>
+  /* ============================================================
+     CONFIGURAÇÃO — edite só aqui
+     ============================================================ */
+  const CONFIG = {
+    pixKey: "010.260.099-60",                 // CPF
+    pixOwner: "Sandra",
+    rsvpFormLink: "https://docs.google.com/forms/d/e/1FAIpQLSfWIIZcxjLRF4WrlGurb-vGJ4ssZ-h3tXi1t-5gPkjxSAe7pA/viewform",
+    giftFormLink: "https://docs.google.com/forms/d/e/1FAIpQLSdbyEF-hs_SVhqoUBdeB2WqeSjQmp0vA7yIwbQP0ruV5HFplA/viewform",
+    gifts: [
+      {
+        id: "churrasqueira",
+        name: "Reforma da Churrasqueira Oficial",
+        desc: "40 anos de casado merecem um espaço de honra pro assado de domingo.",
+        price: 350
+      },
+      {
+        id: "sofa",
+        name: "Vale-Sofá VIP",
+        desc: "Um lugar cativo no sofá pra maratonar novela sem disputa pelo controle.",
+        price: 70
+      },
+      {
+        id: "controle",
+        name: "Kit Primeiros Socorros pro Debate do Controle Remoto",
+        desc: "Porque depois de 40 anos, essa guerra ainda não acabou.",
+        price: 45
+      },
+      {
+        id: "jantar",
+        name: "Jantar a Dois (sem celular na mesa, é sério)",
+        desc: "Uma noite só deles dois, como no começo de tudo.",
+        price: 180
+      },
+      {
+        id: "silencio",
+        name: "Passagem Rumo ao Silêncio",
+        desc: "Um fim de semana longe dos filhos, com muito amor, viu?",
+        price: 250
+      },
+      {
+        id: "spa",
+        name: "Spa Day pra Rainha da Casa",
+        desc: "Ela cuidou de todo mundo por 40 anos. Agora é a vez dela.",
+        price: 220
+      },
+      {
+        id: "combustivel",
+        name: "Combustível pra Mais 40 Anos de Implicância com Carinho",
+        desc: "Café, vinho, ou o que for que mantém o casamento (e a paciência) funcionando.",
+        price: 100
+      },
+      {
+        id: "viagem",
+        name: "Viagem Surpresa: Destino a Combinar",
+        desc: "Pra continuar escrevendo essa história em outro lugar.",
+        price: 500
+      },
+      {
+        id: "europa",
+        name: "Uma Cotinha pra Viagem à Europa",
+        desc: "Ninguém disse que ia pagar sozinho, mas todo trocado ajuda a chegar mais perto da Disney… digo, da Europa.",
+        price: 1500
+      },
+      {
+        id: "brinde",
+        name: "Brinde de Honra: Vinho + Taças Novas",
+        desc: "Pra brindar aos 40 anos com estilo (e sem taça rachada).",
+        price: 160
+      }
+    ]
+  };
+
+  const brl = v => v.toLocaleString('pt-BR', { style:'currency', currency:'BRL' });
+
+  const grid = document.getElementById('giftGrid');
+
+  CONFIG.gifts.forEach(g => {
+    const card = document.createElement('div');
+    card.className = 'gift-card';
+    card.innerHTML = `
+      <div class="gem"></div>
+      <h3>${g.name}</h3>
+      <p>${g.desc}</p>
+      <div class="gift-price">${brl(g.price)}</div>
+      <button type="button">Quero dar esse presente</button>
+    `;
+    card.querySelector('button').addEventListener('click', () => openModal(g));
+    grid.appendChild(card);
+  });
+
+  // card de valor livre, sempre por último
+  const freeCard = document.createElement('div');
+  freeCard.className = 'gift-card free-amount';
+  freeCard.innerHTML = `
+    <div class="gem"></div>
+    <h3>Contribuição Livre</h3>
+    <p>Do jeitinho que o coração (e o bolso) mandar.</p>
+    <div class="gift-price">Você escolhe</div>
+    <button type="button">Quero contribuir</button>
+  `;
+  freeCard.querySelector('button').addEventListener('click', () => openModal({ id:'livre', name:'Contribuição Livre', price:null }));
+  grid.appendChild(freeCard);
+
+  // ---- Modal de presente ----
+  const overlay = document.getElementById('modalOverlay');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalPrice = document.getElementById('modalPrice');
+  const freeField = document.getElementById('freeAmountField');
+  const freeInput = document.getElementById('freeAmountInput');
+  const pixKeyText = document.getElementById('pixKeyText');
+  const pixOwnerText = document.getElementById('pixOwnerText');
+  const giftFormIframe = document.getElementById('giftFormIframe');
+  const giftFormFallback = document.getElementById('giftFormFallback');
+
+  pixKeyText.textContent = CONFIG.pixKey;
+  pixOwnerText.textContent = CONFIG.pixOwner;
+  const giftEmbedUrl = CONFIG.giftFormLink + (CONFIG.giftFormLink.includes('?') ? '&' : '?') + 'embedded=true';
+  giftFormFallback.href = CONFIG.giftFormLink;
+
+  let currentGift = null;
+  let giftIframeLoaded = false;
+
+  function openModal(gift){
+    currentGift = gift;
+    modalTitle.textContent = gift.name;
+
+    if(gift.price === null){
+      modalPrice.textContent = '';
+      freeField.style.display = 'block';
+      freeInput.value = '';
+    } else {
+      modalPrice.textContent = brl(gift.price);
+      freeField.style.display = 'none';
+    }
+
+    if(!giftIframeLoaded){
+      giftFormIframe.src = giftEmbedUrl;
+      giftIframeLoaded = true;
+    }
+
+    overlay.classList.add('open');
+  }
+
+  function closeModal(){
+    overlay.classList.remove('open');
+    currentGift = null;
+  }
+
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  overlay.addEventListener('click', e => { if(e.target === overlay) closeModal(); });
+
+  // ---- Modal de RSVP ----
+  const rsvpOverlay = document.getElementById('rsvpModalOverlay');
+  const rsvpBtn = document.getElementById('rsvpBtn');
+  const rsvpFormIframe = document.getElementById('rsvpFormIframe');
+  const rsvpFormFallback = document.getElementById('rsvpFormFallback');
+  const rsvpEmbedUrl = CONFIG.rsvpFormLink + (CONFIG.rsvpFormLink.includes('?') ? '&' : '?') + 'embedded=true';
+  rsvpFormFallback.href = CONFIG.rsvpFormLink;
+  let rsvpIframeLoaded = false;
+
+  function openRsvpModal(){
+    if(!rsvpIframeLoaded){
+      rsvpFormIframe.src = rsvpEmbedUrl;
+      rsvpIframeLoaded = true;
+    }
+    rsvpOverlay.classList.add('open');
+  }
+
+  function closeRsvpModal(){
+    rsvpOverlay.classList.remove('open');
+  }
+
+  rsvpBtn.addEventListener('click', openRsvpModal);
+  document.getElementById('rsvpModalClose').addEventListener('click', closeRsvpModal);
+  rsvpOverlay.addEventListener('click', e => { if(e.target === rsvpOverlay) closeRsvpModal(); });
+
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape'){ closeModal(); closeRsvpModal(); }
+  });
+
+  document.getElementById('copyPixBtn').addEventListener('click', async () => {
+    try{
+      await navigator.clipboard.writeText(CONFIG.pixKey);
+      const btn = document.getElementById('copyPixBtn');
+      const original = btn.textContent;
+      btn.textContent = 'Copiado!';
+      setTimeout(() => btn.textContent = original, 1800);
+    }catch(err){
+      alert('Não foi possível copiar automaticamente. Chave PIX: ' + CONFIG.pixKey);
+    }
+  });
+</script>
+
+</body>
+</html>
